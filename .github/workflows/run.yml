@@ -1,0 +1,19 @@
+name: k6 Load Test
+
+on:
+ workflow_dispatch:
+jobs:
+  run-k6:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup K6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run K6 load tests
+        uses: grafana/run-k6-action@v1
+        with:
+          path: '*.js'
+          parallel: false
